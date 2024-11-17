@@ -10,7 +10,7 @@ const Recursos = () => {
   const resultsPerPage = 8;
 
   useEffect(() => {
-    fetch('/public/json/biblioteca.json')
+    fetch('/json/biblioteca.json')
       .then((response) => response.json())
       .then((data) => setRecursosData(data))
       .catch((error) => console.error('Error al cargar los datos de los libros:', error));

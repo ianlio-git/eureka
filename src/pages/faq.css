@@ -1,0 +1,20 @@
+/* ----------------Faq----------------- */
+.faq-item {
+    cursor: pointer; 
+    transition: background-color 0.3s ease; 
+}
+
+.faq-item:hover {
+    background-color: #f9fafb; 
+}
+
+.faq-answer {
+    max-height: 0; 
+    overflow: hidden; 
+    transition: max-height 0.5s ease; 
+}
+
+.faq-item:focus-within .faq-answer,
+.faq-item:hover .faq-answer {
+    max-height: 200px; 
+}

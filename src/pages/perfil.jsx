@@ -162,15 +162,17 @@ const Perfil = () => {
         <div className="flex justify-center mb-6">
           <h3
             onClick={() => setTabActivo('vigentes')}
-            className={`text-2xl font-semibold cursor-pointer mx-4 text-teal-600 transition-colors duration-300 hover:text-teal-800 ${tabActivo === 'vigentes' ? 'border-b-2 border-teal-600' : ''}`}
+            className={`text-2xl font-semibold cursor-pointer mx-4 text-teal-600 transition-colors duration-300 hover:text-teal-800 ${tabActivo === 'vigentes' ? 'border-b-2 border-teal-600' : ''} 
+                        sm:text-sm md:text-xl lg:text-2xl`}
           >
-            Mis Cursos Vigentes
+            Cursos Vigentes
           </h3>
           <h3
             onClick={() => setTabActivo('finalizados')}
-            className={`text-2xl font-semibold cursor-pointer mx-4 text-teal-600 transition-colors duration-300 hover:text-teal-800 ${tabActivo === 'finalizados' ? 'border-b-2 border-teal-600' : ''}`}
+            className={`text-2xl font-semibold cursor-pointer mx-4 text-teal-600 transition-colors duration-300 hover:text-teal-800 ${tabActivo === 'finalizados' ? 'border-b-2 border-teal-600' : ''} 
+                        sm:text-sm md:text-xl lg:text-2xl`}
           >
-            Mis Cursos Finalizados
+            Cursos Finalizados
           </h3>
         </div>
 
@@ -185,19 +187,23 @@ const Perfil = () => {
                 <div className="flex flex-col">
                   <span className="font-semibold text-teal-700 text-lg">{curso.nombre}</span>
                   <span className="text-gray-500 text-sm">Horario: {curso.horario}</span>
-                  <span className="text-gray-500 text-sm">Docente: {curso.docente}</span>
                 </div>
-                <span className="text-teal-600 font-semibold text-lg">Finalizar</span>
+                <button
+                  onClick={() => abrirModal(curso)} // Abrir modal de completado
+                  className="px-4 py-2 bg-teal-600 text-white rounded-md"
+                >
+                  Marcar como completado
+                </button>
               </li>
             ))}
           </ul>
         ) : (
           <ul className="space-y-4">
             {cursosFinalizados.map((curso, index) => (
-              <li key={index} className="p-5 bg-gray-200 rounded-lg shadow-md">
+              <li key={index} className="p-5 bg-gray-100 rounded-lg shadow-md">
                 <div className="flex flex-col">
                   <span className="font-semibold text-teal-700 text-lg">{curso.nombre}</span>
-                  <span className="text-gray-500 text-sm">Fecha de finalización: {curso.fechaFinalizacion}</span>
+                  <span className="text-gray-500 text-sm">Finalizado el: {curso.fechaFinalizacion}</span>
                   <span className="text-gray-500 text-sm">Docente: {curso.docenteFinalizacion}</span>
                 </div>
               </li>
@@ -207,21 +213,24 @@ const Perfil = () => {
       </div>
 
       {/* Modal de confirmación */}
-      {modalVisible && (
-        <div className="fixed inset-0 flex justify-center items-center bg-gray-700 bg-opacity-50 z-50">
-          <div className="bg-white p-6 rounded-lg shadow-lg w-96">
-            <h3 className="text-xl font-semibold text-teal-600 mb-4">Confirmación de Curso Completado</h3>
-            <p>¿Estás seguro de que deseas marcar el curso "{cursoSeleccionado.nombre}" como completado?</p>
-            <div className="mt-6 flex justify-end space-x-4">
+      {modalVisible && cursoSeleccionado && (
+        <div className="fixed inset-0 flex justify-center items-center bg-black bg-opacity-50">
+          <div className="bg-white p-8 rounded-lg shadow-xl max-w-md w-full">
+            <h3 className="text-2xl font-semibold text-teal-700 mb-4">Confirmación</h3>
+            <p className="text-lg mb-4">
+              ¿Estás seguro de que deseas marcar el curso{" "}
+              <strong>{cursoSeleccionado.nombre}</strong> como completado?
+            </p>
+            <div className="flex justify-end">
               <button
-                className="px-6 py-2 bg-gray-300 text-black rounded-lg hover:bg-gray-400 transition-colors"
                 onClick={cerrarModal}
+                className="px-4 py-2 mr-4 bg-gray-400 text-white rounded-md"
               >
                 Cancelar
               </button>
               <button
-                className="px-6 py-2 bg-teal-600 text-white rounded-lg hover:bg-teal-700 transition-colors"
                 onClick={confirmarCompletado}
+                className="px-4 py-2 bg-teal-600 text-white rounded-md"
               >
                 Confirmar
               </button>

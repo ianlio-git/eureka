@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom'; // Importamos useNavigate
 
 const Reservas = () => {
     const [subjects, setSubjects] = useState([]);
@@ -16,6 +17,8 @@ const Reservas = () => {
     const [showReserveButton, setShowReserveButton] = useState(false);
     const [taxRate] = useState(0.21);  // Tasa de IVA (21%)
     const [showModal, setShowModal] = useState(false);  // Estado para mostrar el modal
+
+    const navigate = useNavigate(); // Hook para navegar
 
     // Cargar las materias desde el archivo JSON
     useEffect(() => {
@@ -121,6 +124,9 @@ const Reservas = () => {
         alert(`¡Reserva realizada con éxito!\n\n${pendingAlertMessage}`);
 
         setShowModal(false);  // Cerrar el modal después de realizar la reserva
+
+        // Redirigir al usuario a la página de pagos
+        navigate('/pagos');  // Esto redirige al usuario a la ruta de la página de pagos
     };
 
     const closeModal = () => {
@@ -200,50 +206,48 @@ const Reservas = () => {
                             <option value={6}>6 Cuotas</option>
                             <option value={12}>12 Cuotas</option>
                         </select>
-
-                        <div className="text-center mt-6">
-                            <button
-                                type="button"
-                                className="btn-calcular p-3 bg-verde-agua text-white font-semibold rounded-lg"
-                                onClick={calculateTotal}
-                            >
-                                Calcular Costo
-                            </button>
-                        </div>
                     </div>
                 </div>
+
+                <button
+                    type="button"
+                    className="w-full bg-verde-agua text-white py-2 px-4 rounded-lg mt-4"
+                    onClick={calculateTotal}
+                >
+                    Calcular Costo
+                </button>
+
+                {showReserveButton && (
+                    <div className="mt-6 flex justify-center">
+                        <button
+                            type="button"
+                            className="bg-verde-agua text-white py-2 px-4 rounded-lg"
+                            onClick={handleReserve}
+                        >
+                            Reservar
+                        </button>
+                    </div>
+                )}
             </form>
 
-            {/* Modal de resumen de reserva */}
             {showModal && (
-                <div className="modal fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
-                    <div className="modal-content bg-white p-6 rounded-lg shadow-xl max-w-md w-full">
-                        <h3 className="text-xl font-bold text-verde-agua mb-4">Resumen de la Reserva</h3>
-                        <div className="text-verde-agua mb-4">
-                            <p><strong>Curso:</strong> {selectedSubject.name}</p>
-                            <p><strong>Profesor:</strong> {selectedTeacher}</p>
-                            <p><strong>Cantidad de Clases:</strong> {classCount}</p>
-                            <p><strong>Total (sin impuestos):</strong> ${total.amount}</p>
-                            <p><strong>Interés:</strong> {total.interestRate}%</p>
-                            <p><strong>Total con Interés:</strong> ${total.finalAmount}</p>
-                            <p><strong>IVA (21%):</strong> ${total.taxAmount}</p>
-                            <p><strong>Total Final:</strong> ${total.totalWithTax}</p>
-                        </div>
-
-                        <div className="text-center mt-6">
-                            <button
-                                className="btn-reservar p-3 bg-verde-agua text-white font-semibold rounded-lg"
-                                onClick={handleReserve}
-                            >
-                                Reservar
-                            </button>
-                            <button
-                                className="btn-cerrar mt-3 p-3 bg-red-500 text-white font-semibold rounded-lg"
-                                onClick={closeModal}
-                            >
-                                Cerrar
-                            </button>
-                        </div>
+                <div className="modal fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+                    <div className="modal-content bg-white p-6 rounded-lg shadow-lg max-w-md w-full">
+                        <h3 className="text-xl font-semibold text-verde-agua mb-4">Confirmación de Reserva</h3>
+                        <p>¿Estás seguro de que deseas realizar la reserva?</p>
+                        <p><strong>Total: </strong>${total.totalWithTax.toFixed(2)}</p>
+                        <button
+                            className="bg-verde-agua text-white py-2 px-4 rounded-lg mt-4"
+                            onClick={handleReserve}
+                        >
+                            Confirmar Reserva
+                        </button>
+                        <button
+                            className="bg-gray-500 text-white py-2 px-4 rounded-lg mt-4 ml-4"
+                            onClick={closeModal}
+                        >
+                            Cancelar
+                        </button>
                     </div>
                 </div>
             )}

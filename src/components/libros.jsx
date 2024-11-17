@@ -1,6 +1,8 @@
+
 import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom'; // Importamos useNavigate
 import libroImage from "../img/informatica.png"; // Importamos la imagen
+
 
 const recursos = [
   { "id": 1, "title": "HTML y CSS: Diseño y Construcción de Páginas Web", "subject": "Desarrollo Web Frontend", "file": "/pdfs/frontend1.pdf", "author": "Jon Duckett", "description": "Un enfoque claro y conciso para aprender los principios fundamentales del diseño y desarrollo web utilizando HTML y CSS." },
@@ -38,7 +40,7 @@ const Libros = () => {
 
   if (!bookDetails) {
     return (
-      <div className="min-h-screen flex justify-center items-center">
+      <div className="min-h-screen flex justify-center items-center bg-gray-100">
         <p className="text-xl text-teal-600">Cargando...</p>
       </div>
     ); // Mostrar un mensaje mientras se cargan los detalles del libro
@@ -56,20 +58,20 @@ const Libros = () => {
   };
 
   return (
-    <div className="flex justify-center items-center min-h-screen bg-gray-100">
-      <div className="bg-white w-full max-w-4xl rounded-lg shadow-lg mb-8">
+    <div className="bg-gray-100 py-8 px-4 md:px-8 min-h-screen flex justify-center items-center">
+      <div className="bg-white w-full max-w-4xl rounded-lg shadow-lg overflow-hidden">
         {/* Imagen de portada */}
         <div
-          className="w-full h-96 bg-cover bg-center rounded-t-lg"
+          className="w-full h-56 md:h-96 bg-cover bg-center"
           style={{
             backgroundImage: `url(${libroImage})`, // Asignamos la misma imagen para todos los libros
           }}
         ></div>
 
-        {/* Contenido de la carátula */}
-        <div className="p-8">
+        {/* Contenido del libro */}
+        <div className="p-6 md:p-8">
           {/* Título del libro */}
-          <h1 className="text-4xl font-extrabold text-center text-teal-700 mb-4">{bookDetails.title}</h1>
+          <h1 className="text-3xl md:text-4xl font-extrabold text-center text-teal-700 mb-4">{bookDetails.title}</h1>
 
           {/* Materia y Autor */}
           <ul className="text-sm text-gray-600 mb-6 space-y-2">
@@ -82,22 +84,22 @@ const Libros = () => {
           </ul>
 
           {/* Descripción del libro */}
-          <p className="text-lg text-gray-700 mb-6">{bookDetails.description}</p>
+          <p className="text-base md:text-lg text-gray-700 mb-6">{bookDetails.description}</p>
 
           {/* Botones para descargar PDF y volver atrás */}
-          <div className="flex justify-center space-x-6">
+          <div className="flex flex-col sm:flex-row justify-center sm:space-x-4 space-y-4 sm:space-y-0">
             {/* Botón para simular la descarga del PDF */}
             <button
               onClick={handleDownload}
-              className="inline-block px-8 py-4 bg-teal-600 text-white text-xl rounded-full hover:bg-teal-700 transition duration-200"
+              className="inline-block px-6 py-3 bg-teal-600 text-white text-xl rounded-full hover:bg-teal-700 transition duration-200 w-full sm:w-auto"
             >
               Descargar PDF
             </button>
 
             {/* Botón para volver a la lista de libros */}
             <button
-              onClick={() => navigate("/libros")}
-              className="inline-block px-8 py-4 bg-gray-500 text-white text-xl rounded-full hover:bg-gray-600 transition duration-200"
+              onClick={() => navigate("/recursos")}
+              className="inline-block px-6 py-3 bg-gray-500 text-white text-xl rounded-full hover:bg-gray-600 transition duration-200 w-full sm:w-auto"
             >
               Volver a la lista
             </button>

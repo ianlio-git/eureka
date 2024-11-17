@@ -39,53 +39,61 @@ const Foro = () => {
 
   const [currentPage, setCurrentPage] = useState(1);
   const postsPerPage = 4;
+  const [newQuery, setNewQuery] = useState('');
+  const [newReply, setNewReply] = useState('');
 
   // Asociamos las imágenes a los autores
   const getProfileImage = (author) => {
     switch (author) {
       case 'Ana García':
-        return perfil3;  // Foto específica para Ana
+        return perfil3;
       case 'Carlos Rodríguez':
-        return perfil1;  // Foto específica para Carlos
+        return perfil1;
       case 'Laura Martínez':
-        return perfil2;  // Foto específica para Laura
+        return perfil2;
       default:
-        return miPerfil;  // Foto por defecto si no hay coincidencia
+        return miPerfil;
     }
   };
 
   // Función para agregar una nueva consulta
-  const handleNewQuery = (newQuery) => {
-    const newPost = {
-      id: posts.length + 1,
-      author: 'Nuevo Autor', // Aquí puedes agregar un estado para el usuario actual
-      timeAgo: 'Hace unos segundos',
-      title: newQuery,
-      comments: 0,
-      replies: [],
-    };
-    setPosts([newPost, ...posts]);
+  const handleNewQuery = () => {
+    if (newQuery.trim()) {
+      const newPost = {
+        id: posts.length + 1,
+        author: 'Nuevo Autor',
+        timeAgo: 'Hace unos segundos',
+        title: newQuery,
+        comments: 0,
+        replies: [],
+      };
+      setPosts([newPost, ...posts]);
+      setNewQuery(''); // Limpiar el input después de enviar
+    }
   };
 
   // Función para agregar una nueva respuesta
-  const handleAddReply = (postId, replyText) => {
-    const newPosts = posts.map(post => {
-      if (post.id === postId) {
-        const newReply = {
-          id: post.replies.length + 1,
-          author: 'Nuevo Autor', // Aquí puedes agregar un estado para el usuario actual
-          text: replyText,
-          profileImg: miPerfil, // Asignamos tu imagen de perfil
-        };
-        return {
-          ...post,
-          replies: [...post.replies, newReply],
-          comments: post.comments + 1,
-        };
-      }
-      return post;
-    });
-    setPosts(newPosts);
+  const handleAddReply = (postId) => {
+    if (newReply.trim()) {
+      const newPosts = posts.map(post => {
+        if (post.id === postId) {
+          const newReplyObj = {
+            id: post.replies.length + 1,
+            author: 'Nuevo Autor',
+            text: newReply,
+            profileImg: miPerfil,
+          };
+          return {
+            ...post,
+            replies: [...post.replies, newReplyObj],
+            comments: post.comments + 1,
+          };
+        }
+        return post;
+      });
+      setPosts(newPosts);
+      setNewReply(''); // Limpiar el input después de enviar
+    }
   };
 
   // Paginación: determinar los posts actuales según la página
@@ -104,16 +112,20 @@ const Foro = () => {
       <div className="mb-8">
         <input
           type="text"
+          value={newQuery}
           placeholder="¿Tienes alguna consulta?"
           className="border-2 border-teal-500 p-4 w-full rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-300 transition"
-          onKeyDown={(e) => {
-            if (e.key === 'Enter' && e.target.value) {
-              handleNewQuery(e.target.value);
-              e.target.value = ''; // Limpiar el input después de enviar
-            }
-          }}
+          onChange={(e) => setNewQuery(e.target.value)}
         />
-        <span className="text-sm text-gray-500">Presiona Enter para enviar tu consulta</span>
+        <div className="flex justify-end mt-2">
+          <button
+            className="bg-teal-600 text-white py-2 px-6 rounded-lg hover:bg-teal-700"
+            onClick={handleNewQuery}
+          >
+            Enviar Consulta
+          </button>
+        </div>
+        <span className="text-sm text-gray-500">Presiona el botón para enviar tu consulta</span>
       </div>
 
       <div className="space-y-8">
@@ -143,7 +155,7 @@ const Foro = () => {
                   <div className="flex items-center">
                     <div className="w-8 h-8 bg-gray-200 rounded-full flex items-center justify-center">
                       <img
-                        src={getProfileImage(reply.author)} // Asignamos la imagen de perfil según el autor
+                        src={getProfileImage(reply.author)}
                         alt="Perfil"
                         className="w-full h-full rounded-full object-cover"
                       />
@@ -158,16 +170,20 @@ const Foro = () => {
               <div className="mt-4">
                 <input
                   type="text"
+                  value={newReply}
                   placeholder="Escribe una respuesta..."
                   className="border-2 border-teal-500 p-4 w-full rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-300 transition"
-                  onKeyDown={(e) => {
-                    if (e.key === 'Enter' && e.target.value) {
-                      handleAddReply(post.id, e.target.value);
-                      e.target.value = ''; // Limpiar el input después de enviar
-                    }
-                  }}
+                  onChange={(e) => setNewReply(e.target.value)}
                 />
-                <span className="text-sm text-gray-500">Presiona Enter para responder</span>
+                <div className="flex justify-end mt-2">
+                  <button
+                    className="bg-teal-600 text-white py-2 px-6 rounded-lg hover:bg-teal-700"
+                    onClick={() => handleAddReply(post.id)}
+                  >
+                    Enviar Respuesta
+                  </button>
+                </div>
+                <span className="text-sm text-gray-500">Presiona el botón para enviar tu respuesta</span>
               </div>
             </div>
           </div>

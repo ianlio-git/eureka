@@ -231,26 +231,39 @@ const Reservas = () => {
             </form>
 
             {showModal && (
-                <div className="modal fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-                    <div className="modal-content bg-white p-6 rounded-lg shadow-lg max-w-md w-full">
-                        <h3 className="text-xl font-semibold text-verde-agua mb-4">Confirmación de Reserva</h3>
-                        <p>¿Estás seguro de que deseas realizar la reserva?</p>
-                        <p><strong>Total: </strong>${total.totalWithTax.toFixed(2)}</p>
-                        <button
-                            className="bg-verde-agua text-white py-2 px-4 rounded-lg mt-4"
-                            onClick={handleReserve}
-                        >
-                            Confirmar Reserva
-                        </button>
-                        <button
-                            className="bg-gray-500 text-white py-2 px-4 rounded-lg mt-4 ml-4"
-                            onClick={closeModal}
-                        >
-                            Cancelar
-                        </button>
+            <div className="modal fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+                <div className="modal-content bg-white p-6 rounded-lg shadow-lg max-w-md w-full">
+                    <h3 className="text-xl font-semibold text-verde-agua mb-4">Confirmación de Reserva</h3>
+                    <p>¿Estás seguro de que deseas realizar la reserva?</p>
+                    
+                    {/* Detalles del cálculo */}
+                    <div className="mt-4">
+                        <p><strong>Costo Base: </strong>${total.amount.toFixed(2)}</p>
+                        {total.interestRate > 0 && (
+                            <p><strong>Interés ({total.interestRate}%): </strong>${(total.amount * total.interestRate / 100).toFixed(2)}</p>
+                        )}
+                        <p><strong>Monto Final con Interés: </strong>${total.finalAmount.toFixed(2)}</p>
+                        <p><strong>IVA (21%): </strong>${total.taxAmount.toFixed(2)}</p>
+                        <p><strong>Total con IVA: </strong>${total.totalWithTax.toFixed(2)}</p>
                     </div>
+
+                    {/* Botones del modal */}
+                    <button
+                        className="bg-verde-agua text-white py-2 px-4 rounded-lg mt-4"
+                        onClick={handleReserve}
+                    >
+                        Confirmar Reserva
+                    </button>
+                    <button
+                        className="bg-gray-500 text-white py-2 px-4 rounded-lg mt-4 ml-4"
+                        onClick={closeModal}
+                    >
+                        Cancelar
+                    </button>
                 </div>
-            )}
+            </div>
+)}
+
         </div>
     );
 };

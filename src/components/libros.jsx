@@ -8,7 +8,7 @@ const Libros = () => {
 
   useEffect(() => {
     // Cargar el libro desde biblioteca.json usando el id de la URL
-    fetch('/public/json/biblioteca.json')
+    fetch('/json/biblioteca.json')
       .then((response) => response.json())
       .then((data) => {
         // Buscar el libro con el id que se pasa en la URL

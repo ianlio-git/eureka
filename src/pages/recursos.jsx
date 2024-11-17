@@ -10,15 +10,22 @@ const Recursos = () => {
   const resultsPerPage = 8;
 
   useEffect(() => {
-    fetch('json/biblioteca.json')
-      .then((response) => response.json())
+    fetch('/json/biblioteca.json') // Ruta correcta para acceder al archivo JSON
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error('Error al cargar el archivo JSON');
+        }
+        return response.json();
+      })
       .then((data) => setRecursosData(data))
       .catch((error) => console.error('Error al cargar los datos de los libros:', error));
   }, []);
 
   const filteredResources = recursosData.filter((resource) => {
-    return resource.title.toLowerCase().includes(searchTerm.toLowerCase()) || 
-           resource.subject.toLowerCase().includes(selectedSubject.toLowerCase());
+    return (
+      resource.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      resource.subject.toLowerCase().includes(selectedSubject.toLowerCase())
+    );
   });
 
   const totalPages = Math.ceil(filteredResources.length / resultsPerPage);

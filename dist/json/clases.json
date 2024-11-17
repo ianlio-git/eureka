@@ -1,0 +1,56 @@
+[
+  {
+    "name": "Matematica",
+    "price": 100,
+    "docentes": [
+      "Dr. Juan Pérez",
+      "Dra. Ana García"
+    ],
+    "dias": [
+      "Lunes",
+      "Miércoles",
+      "Viernes"
+    ],
+    "horario": "09:00 - 11:00"
+  },
+  {
+    "name": "Fisica",
+    "price": 150,
+    "docentes": [
+      "Dra. María López",
+      "Ing. Roberto Sánchez"
+    ],
+    "dias": [
+      "Martes",
+      "Jueves"
+    ],
+    "horario": "11:30 - 13:30"
+  },
+  {
+    "name": "Quimica",
+    "price": 200,
+    "docentes": [
+      "Ing. Carlos Fernández",
+      "Dra. Laura Torres"
+    ],
+    "dias": [
+      "Lunes",
+      "Miércoles",
+      "Viernes"
+    ],
+    "horario": "14:00 - 16:00"
+  },
+  {
+    "name": "Ingles",
+    "price": 120,
+    "docentes": [
+      "Lic. Ana Gómez",
+      "Dr. Javier Ríos"
+    ],
+    "dias": [
+      "Martes",
+      "Jueves"
+    ],
+    "horario": "16:30 - 18:30"
+  }
+]

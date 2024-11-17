@@ -30,7 +30,7 @@ function Login({ setIsLoggedIn }) {
   };
 
   return (
-    <div className="font-montserrat bg-gray-100 flex items-center justify-center ">
+    <div className="font-montserrat bg-gray-100 flex items-center justify-center min-h-screen">
       <div className="bg-white p-8 rounded-lg shadow-xl w-full max-w-md m-5">
         <h2 className="text-3xl font-extrabold text-center text-gray-800 mb-6">Iniciar sesión</h2>
         <form onSubmit={handleSubmit}>

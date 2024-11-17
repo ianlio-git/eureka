@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom'; // Importamos useNavigate
+import libroImage from "../img/informatica.png"; // Importamos la imagen
 
 const recursos = [
   { "id": 1, "title": "HTML y CSS: Diseño y Construcción de Páginas Web", "subject": "Desarrollo Web Frontend", "file": "/pdfs/frontend1.pdf", "author": "Jon Duckett", "description": "Un enfoque claro y conciso para aprender los principios fundamentales del diseño y desarrollo web utilizando HTML y CSS." },
@@ -19,7 +20,6 @@ const recursos = [
   { "id": 15, "title": "Influence: The Psychology of Persuasion", "subject": "Marketing Digital", "file": "/pdfs/marketing3.pdf", "author": "Robert B. Cialdini", "description": "Aunque no es exclusivamente sobre marketing digital, este libro profundiza en las técnicas de persuasión que son fundamentales para el marketing y la venta." },
   { "id": 16, "title": "Jab, Jab, Jab, Right Hook", "subject": "Marketing Digital", "file": "/pdfs/marketing4.pdf", "author": "Gary Vaynerchuk", "description": "Un enfoque práctico sobre cómo usar las redes sociales para hacer crecer un negocio, con énfasis en la creación de contenido valioso y en la estrategia de marketing digital." }
 ];
-
 
 const Libros = () => {
   const { id } = useParams(); // Accedemos al id del libro desde los parámetros de la URL
@@ -62,7 +62,7 @@ const Libros = () => {
         <div
           className="w-full h-96 bg-cover bg-center rounded-t-lg"
           style={{
-            backgroundImage: `url(${bookDetails.image || 'https://via.placeholder.com/1500x500.png?text=Portada+Genérica'})`,
+            backgroundImage: `url(${libroImage})`, // Asignamos la misma imagen para todos los libros
           }}
         ></div>
 
@@ -89,16 +89,17 @@ const Libros = () => {
             {/* Botón para simular la descarga del PDF */}
             <button
               onClick={handleDownload}
-              className="inline-block px-8 py-4 bg-teal-600 text-white text-xl rounded-full hover:bg-teal-700 transition duration-300 ease-in-out shadow-lg"
+              className="inline-block px-8 py-4 bg-teal-600 text-white text-xl rounded-full hover:bg-teal-700 transition duration-200"
             >
               Descargar PDF
             </button>
-            {/* Botón para volver atrás */}
+
+            {/* Botón para volver a la lista de libros */}
             <button
-              onClick={() => navigate('/recursos')} // Redirigir al inicio
-              className="inline-block px-8 py-4 bg-gray-600 text-white text-xl rounded-full hover:bg-gray-700 transition duration-300 ease-in-out shadow-lg"
+              onClick={() => navigate("/libros")}
+              className="inline-block px-8 py-4 bg-gray-500 text-white text-xl rounded-full hover:bg-gray-600 transition duration-200"
             >
-              Volver al Recursos
+              Volver a la lista
             </button>
           </div>
         </div>

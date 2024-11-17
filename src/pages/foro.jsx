@@ -1,4 +1,8 @@
 import { useState } from 'react';
+import miPerfil from '../img/perfil.jpeg';
+import perfil1 from '../img/perfil1.jpeg';
+import perfil2 from '../img/perfil2.jpeg';
+import perfil3 from '../img/perfil3.jpeg';
 
 const Foro = () => {
   const [posts, setPosts] = useState([
@@ -9,8 +13,8 @@ const Foro = () => {
       title: 'Opiniones del curso de Programación 1',
       comments: 22,
       replies: [
-        { id: 1, author: 'Carlos Rodríguez', text: 'Estoy de acuerdo con el curso' },
-        { id: 2, author: 'Laura Martínez', text: 'Me parece interesante también' }
+        { id: 1, author: 'Carlos Rodríguez', text: 'Estoy de acuerdo con el curso', profileImg: perfil1 },
+        { id: 2, author: 'Laura Martínez', text: 'Me parece interesante también', profileImg: perfil2 }
       ],
     },
     {
@@ -20,7 +24,7 @@ const Foro = () => {
       title: 'Resumen de clase 1',
       comments: 4,
       replies: [
-        { id: 1, author: 'Ana García', text: 'El resumen es muy completo' },
+        { id: 1, author: 'Ana García', text: 'El resumen es muy completo', profileImg: perfil3 },
       ],
     },
     {
@@ -32,9 +36,23 @@ const Foro = () => {
       replies: [],
     },
   ]);
-  
+
   const [currentPage, setCurrentPage] = useState(1);
   const postsPerPage = 4;
+
+  // Asociamos las imágenes a los autores
+  const getProfileImage = (author) => {
+    switch (author) {
+      case 'Ana García':
+        return perfil3;  // Foto específica para Ana
+      case 'Carlos Rodríguez':
+        return perfil1;  // Foto específica para Carlos
+      case 'Laura Martínez':
+        return perfil2;  // Foto específica para Laura
+      default:
+        return miPerfil;  // Foto por defecto si no hay coincidencia
+    }
+  };
 
   // Función para agregar una nueva consulta
   const handleNewQuery = (newQuery) => {
@@ -57,6 +75,7 @@ const Foro = () => {
           id: post.replies.length + 1,
           author: 'Nuevo Autor', // Aquí puedes agregar un estado para el usuario actual
           text: replyText,
+          profileImg: miPerfil, // Asignamos tu imagen de perfil
         };
         return {
           ...post,
@@ -103,7 +122,7 @@ const Foro = () => {
             <div className="flex justify-between items-center mb-4">
               <div className="flex items-center space-x-3">
                 <div className="w-12 h-12 bg-gray-200 rounded-full flex items-center justify-center">
-                  <i className="fas fa-user text-gray-500"></i>
+                  <img src={getProfileImage(post.author)} alt="Mi Perfil" className="w-full h-full rounded-full object-cover" />
                 </div>
                 <span className="font-semibold text-lg text-gray-700">{post.author}</span>
               </div>
@@ -123,7 +142,11 @@ const Foro = () => {
                 <div key={reply.id} className="border-t pt-3 mt-3">
                   <div className="flex items-center">
                     <div className="w-8 h-8 bg-gray-200 rounded-full flex items-center justify-center">
-                      <i className="fas fa-user text-gray-500"></i>
+                      <img
+                        src={getProfileImage(reply.author)} // Asignamos la imagen de perfil según el autor
+                        alt="Perfil"
+                        className="w-full h-full rounded-full object-cover"
+                      />
                     </div>
                     <span className="font-semibold ml-2 text-gray-700">{reply.author}</span>
                   </div>

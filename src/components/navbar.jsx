@@ -2,6 +2,7 @@ import { Link, useNavigate } from 'react-router-dom'; // Importamos 'useNavigate
 import { useState, useEffect, useRef } from 'react';
 import './navbar.css';
 import PropTypes from 'prop-types';
+import logo from '../img/LOGO-removebg-preview.png';
 
 function Navbar({ isLoggedIn, setIsLoggedIn }) {
   const [menuOpen, setMenuOpen] = useState(false);  // Estado para el menú en dispositivos móviles
@@ -75,8 +76,10 @@ function Navbar({ isLoggedIn, setIsLoggedIn }) {
         
         {/* Sección para dispositivos móviles */}
         <div className="flex flex-row items-center justify-between w-full md:hidden">
-          <div className="text-white text-4xl font-bold">
-            <button onClick={handleRedirectToProfile} className="nav-link title no-hover-bg">
+          <div className="flex items-center">
+            {/* Logo */}
+            <img src={logo} alt="Instituto Eureka" className="w-12 h-12 mr-3" />
+            <button onClick={handleRedirectToProfile} className="nav-link title no-hover-bg text-white text-4xl font-bold">
               Instituto Eureka
             </button>
           </div>
@@ -96,9 +99,13 @@ function Navbar({ isLoggedIn, setIsLoggedIn }) {
         {/* Menú para dispositivos grandes */}
         <div className="hidden md:flex flex-col w-full">
           <div className="text-center mb-12 mt-5">
-            <button onClick={handleRedirectToProfile} className="text-white text-4xl font-bold nav-link title no-hover-bg hover:text-green-300">
-              Instituto Eureka
-            </button>
+            <div className="flex items-center justify-center">
+              {/* Logo */}
+              <img src={logo} alt="Instituto Eureka" className="w-12 h-12 mr-3" />
+              <button onClick={handleRedirectToProfile} className="text-white text-4xl font-bold nav-link title no-hover-bg hover:text-green-300">
+                Instituto Eureka
+              </button>
+            </div>
           </div>
           <div className="flex justify-between w-full">
             <div className="flex space-x-4 w-full justify-center items-center">

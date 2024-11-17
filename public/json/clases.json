@@ -1,24 +1,23 @@
 [
   {
-    "name": "Matematica",
-    "price": 100,
+    "name": "Desarrollo Web Frontend",
+    "price": 10000,
     "docentes": [
-      "Dr. Juan Pérez",
-      "Dra. Ana García"
+      "Juan Pérez",
+      "Ana García"
     ],
     "dias": [
-      "Lunes",
       "Miércoles",
       "Viernes"
     ],
     "horario": "09:00 - 11:00"
   },
   {
-    "name": "Fisica",
-    "price": 150,
+    "name": "Diseño UX/UI",
+    "price": 15000,
     "docentes": [
-      "Dra. María López",
-      "Ing. Roberto Sánchez"
+      "Carlos Mendoza",
+      "Roberto Sánchez"
     ],
     "dias": [
       "Martes",
@@ -27,25 +26,24 @@
     "horario": "11:30 - 13:30"
   },
   {
-    "name": "Quimica",
-    "price": 200,
+    "name": "Desarrollo Backend",
+    "price": 20000,
     "docentes": [
-      "Ing. Carlos Fernández",
-      "Dra. Laura Torres"
+      "Miguel Ángel Ruiz",
+      "Laura Torres"
     ],
     "dias": [
       "Lunes",
-      "Miércoles",
-      "Viernes"
+      "Miércoles"
     ],
     "horario": "14:00 - 16:00"
   },
   {
-    "name": "Ingles",
-    "price": 120,
+    "name": "Marketing Digital",
+    "price": 12000,
     "docentes": [
-      "Lic. Ana Gómez",
-      "Dr. Javier Ríos"
+      "Laura Martínez",
+      "Javier Ríos"
     ],
     "dias": [
       "Martes",

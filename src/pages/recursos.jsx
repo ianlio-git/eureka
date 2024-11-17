@@ -12,167 +12,142 @@ const Recursos = () => {
   // Cuando el componente se monta, asignamos los datos a la variable de estado
   useEffect(() => {
     const recursos = [
+      // Desarrollo Web Frontend
       {
         "id": 1,
-        "title": "Cálculo Diferencial y Integral",
-        "subject": "Matemática",
-        "file": "/pdfs/matematica1.pdf",
-        "author": "Juan Pérez",
-        "description": "Este libro cubre los principios básicos del cálculo diferencial e integral."
+        "title": "HTML y CSS: Diseño y Construcción de Páginas Web",
+        "subject": "Desarrollo Web Frontend",
+        "file": "/pdfs/frontend1.pdf",
+        "author": "Jon Duckett",
+        "description": "Un enfoque claro y conciso para aprender los principios fundamentales del diseño y desarrollo web utilizando HTML y CSS."
       },
       {
         "id": 2,
-        "title": "Álgebra Lineal",
-        "subject": "Matemática",
-        "file": "/pdfs/matematica2.pdf",
-        "author": "Ana Gómez",
-        "description": "Un enfoque completo sobre álgebra lineal con ejemplos resueltos."
+        "title": "JavaScript: The Good Parts",
+        "subject": "Desarrollo Web Frontend",
+        "file": "/pdfs/frontend2.pdf",
+        "author": "Douglas Crockford",
+        "description": "Un análisis profundo sobre las características más poderosas y útiles de JavaScript, ayudando a escribir código limpio y eficiente."
       },
       {
         "id": 3,
-        "title": "Geometría Analítica",
-        "subject": "Matemática",
-        "file": "/pdfs/matematica3.pdf",
-        "author": "Carlos López",
-        "description": "Guía de geometría analítica, enfocada en las aplicaciones prácticas."
+        "title": "Eloquent JavaScript",
+        "subject": "Desarrollo Web Frontend",
+        "file": "/pdfs/frontend3.pdf",
+        "author": "Marijn Haverbeke",
+        "description": "Una introducción al lenguaje JavaScript para desarrolladores de todos los niveles, cubriendo desde conceptos básicos hasta temas más avanzados."
       },
       {
         "id": 4,
-        "title": "Teoría de Números",
-        "subject": "Matemática",
-        "file": "/pdfs/matematica4.pdf",
-        "author": "Pedro Sánchez",
-        "description": "Una introducción a la teoría de números con ejemplos y ejercicios."
+        "title": "React Up and Running",
+        "subject": "Desarrollo Web Frontend",
+        "file": "/pdfs/frontend4.pdf",
+        "author": "Stoyan Stefanov",
+        "description": "Guía para dominar React, una de las bibliotecas más populares de JavaScript para construir interfaces de usuario interactivas."
       },
+    
+      // Desarrollo Backend
       {
         "id": 5,
-        "title": "Física General",
-        "subject": "Física",
-        "file": "/pdfs/fisica1.pdf",
-        "author": "María Rodríguez",
-        "description": "Fundamentos de física general, con explicaciones claras y concisas."
+        "title": "Node.js Design Patterns",
+        "subject": "Desarrollo Backend",
+        "file": "/pdfs/backend1.pdf",
+        "author": "Mario Casciaro",
+        "description": "Explora patrones de diseño para crear aplicaciones escalables y eficientes con Node.js."
       },
       {
         "id": 6,
-        "title": "Mecánica Clásica",
-        "subject": "Física",
-        "file": "/pdfs/fisica2.pdf",
-        "author": "Luis Martínez",
-        "description": "Un enfoque profundo sobre la mecánica clásica, ideales para estudiantes avanzados."
+        "title": "The Pragmatic Programmer",
+        "subject": "Desarrollo Backend",
+        "file": "/pdfs/backend2.pdf",
+        "author": "Andrew Hunt, David Thomas",
+        "description": "Consejos sobre cómo escribir software de alta calidad, aplicables a todos los aspectos del desarrollo backend."
       },
       {
         "id": 7,
-        "title": "Termodinámica",
-        "subject": "Física",
-        "file": "/pdfs/fisica3.pdf",
-        "author": "Laura Pérez",
-        "description": "Todo lo que necesitas saber sobre termodinámica, desde lo básico hasta lo avanzado."
+        "title": "Spring in Action",
+        "subject": "Desarrollo Backend",
+        "file": "/pdfs/backend3.pdf",
+        "author": "Craig Walls",
+        "description": "Ideal para aprender a construir aplicaciones robustas con el framework Spring para Java."
       },
       {
         "id": 8,
-        "title": "Electromagnetismo",
-        "subject": "Física",
-        "file": "/pdfs/fisica4.pdf",
-        "author": "José Ruiz",
-        "description": "Una introducción a la teoría electromagnética y sus aplicaciones."
+        "title": "Clean Code",
+        "subject": "Desarrollo Backend",
+        "file": "/pdfs/backend4.pdf",
+        "author": "Robert C. Martin",
+        "description": "Enseña a escribir código limpio y fácil de mantener, útil especialmente en desarrollo backend."
       },
+    
+      // Diseño UX/UI
       {
         "id": 9,
-        "title": "Química Orgánica",
-        "subject": "Química",
-        "file": "/pdfs/quimica1.pdf",
-        "author": "Carlos García",
-        "description": "Explora los principios fundamentales de la química orgánica con énfasis en los compuestos de carbono."
+        "title": "Don't Make Me Think",
+        "subject": "Diseño UX/UI",
+        "file": "/pdfs/uxui1.pdf",
+        "author": "Steve Krug",
+        "description": "Cómo diseñar interfaces web intuitivas y fáciles de navegar."
       },
       {
         "id": 10,
-        "title": "Química Inorgánica",
-        "subject": "Química",
-        "file": "/pdfs/quimica2.pdf",
-        "author": "Sofía González",
-        "description": "Este libro cubre los conceptos básicos de la química inorgánica y sus aplicaciones."
+        "title": "The Design of Everyday Things",
+        "subject": "Diseño UX/UI",
+        "file": "/pdfs/uxui2.pdf",
+        "author": "Don Norman",
+        "description": "Principios fundamentales para crear productos fáciles de usar, desde una perspectiva humana."
       },
       {
         "id": 11,
-        "title": "Físico-Química",
-        "subject": "Química",
-        "file": "/pdfs/quimica3.pdf",
-        "author": "Ricardo Pérez",
-        "description": "Un análisis detallado de las interacciones químicas desde el punto de vista físico."
+        "title": "Lean UX",
+        "subject": "Diseño UX/UI",
+        "file": "/pdfs/uxui3.pdf",
+        "author": "Jeff Gothelf",
+        "description": "Cómo integrar los principios de UX con metodologías ágiles para mejorar la colaboración y la efectividad."
       },
       {
         "id": 12,
-        "title": "Bioquímica",
-        "subject": "Química",
-        "file": "/pdfs/quimica4.pdf",
-        "author": "Clara Ruiz",
-        "description": "Una introducción a la bioquímica, ideal para estudiantes de ciencias biológicas."
+        "title": "Design Systems",
+        "subject": "Diseño UX/UI",
+        "file": "/pdfs/uxui4.pdf",
+        "author": "Alla Kholmatova",
+        "description": "Guía para crear sistemas de diseño consistentes, permitiendo experiencias de usuario de alta calidad."
       },
+    
+      // Marketing Digital
       {
         "id": 13,
-        "title": "Gramática Inglesa",
-        "subject": "Inglés",
-        "file": "/pdfs/ingles1.pdf",
-        "author": "John Smith",
-        "description": "Un repaso completo de la gramática inglesa, desde lo más básico hasta niveles avanzados."
+        "title": "Marketing Digital para Dummies",
+        "subject": "Marketing Digital",
+        "file": "/pdfs/marketing1.pdf",
+        "author": "Ryan Deiss, Russ Henneberry",
+        "description": "Una guía accesible para aprender marketing digital, cubriendo desde la creación de contenido hasta la publicidad pagada y la analítica."
       },
       {
         "id": 14,
-        "title": "Inglés para Todos",
-        "subject": "Inglés",
-        "file": "/pdfs/ingles2.pdf",
-        "author": "Jane Doe",
-        "description": "Guía práctica para aprender inglés de manera fácil y accesible."
+        "title": "Contagious: How to Build Word of Mouth in the Digital Age",
+        "subject": "Marketing Digital",
+        "file": "/pdfs/marketing2.pdf",
+        "author": "Jonah Berger",
+        "description": "Examina las razones por las cuales ciertos productos, ideas y comportamientos se vuelven virales, ofreciendo estrategias efectivas para crear marketing viral."
       },
       {
         "id": 15,
-        "title": "Inglés Intermedio",
-        "subject": "Inglés",
-        "file": "/pdfs/ingles3.pdf",
-        "author": "Chris Green",
-        "description": "Contenido adecuado para estudiantes de nivel intermedio que desean mejorar su fluidez."
+        "title": "Influence: The Psychology of Persuasion",
+        "subject": "Marketing Digital",
+        "file": "/pdfs/marketing3.pdf",
+        "author": "Robert B. Cialdini",
+        "description": "Aunque no es exclusivamente sobre marketing digital, este libro profundiza en las técnicas de persuasión que son fundamentales para el marketing y la venta."
       },
       {
         "id": 16,
-        "title": "Inglés Avanzado",
-        "subject": "Inglés",
-        "file": "/pdfs/ingles4.pdf",
-        "author": "Patricia Blue",
-        "description": "Para estudiantes avanzados que buscan perfeccionar su inglés escrito y hablado."
-      },
-      {
-        "id": 17,
-        "title": "Estadística para Todos",
-        "subject": "Matemática",
-        "file": "/pdfs/matematica5.pdf",
-        "author": "María Ruiz",
-        "description": "Una guía de estadística con ejemplos prácticos y explicaciones detalladas."
-      },
-      {
-        "id": 18,
-        "title": "Física Cuántica",
-        "subject": "Física",
-        "file": "/pdfs/fisica5.pdf",
-        "author": "Daniel Martínez",
-        "description": "Introducción a los principios fundamentales de la mecánica cuántica."
-      },
-      {
-        "id": 19,
-        "title": "Química Analítica",
-        "subject": "Química",
-        "file": "/pdfs/quimica5.pdf",
-        "author": "Verónica Díaz",
-        "description": "Fundamentos de la química analítica, cubriendo técnicas y métodos esenciales."
-      },
-      {
-        "id": 20,
-        "title": "Química Biológica",
-        "subject": "Química",
-        "file": "/pdfs/quimica6.pdf",
-        "author": "Andrés Pérez",
-        "description": "Una exploración de la química en los procesos biológicos."
+        "title": "Jab, Jab, Jab, Right Hook",
+        "subject": "Marketing Digital",
+        "file": "/pdfs/marketing4.pdf",
+        "author": "Gary Vaynerchuk",
+        "description": "Un enfoque práctico sobre cómo usar las redes sociales para hacer crecer un negocio, con énfasis en la creación de contenido valioso y en la estrategia de marketing digital."
       }
-    ];
+    ];    
     setRecursosData(recursos);
   }, []);
 
@@ -219,10 +194,10 @@ const Recursos = () => {
             className="px-4 py-2 border rounded-lg w-full max-w-md"
           >
             <option value="">Seleccionar Materia</option>
-            <option value="Matemática">Matemática</option>
-            <option value="Física">Física</option>
-            <option value="Química">Química</option>
-            <option value="Inglés">Inglés</option>
+            <option value="Desarrollo Web Frontend">Desarrollo Web Frontend</option>
+            <option value="Diseño UX/UI">Diseño UX/UI</option>
+            <option value="Desarrollo Backend">Desarrollo Backend</option>
+            <option value="Marketing Digital">Marketing Digital</option>
           </select>
         </div>
 

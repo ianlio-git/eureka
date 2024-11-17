@@ -31,8 +31,8 @@ function Navbar({ isLoggedIn, setIsLoggedIn }) {
   // Array de enlaces que se mostrarán en el menú
   const menuLinks = [
     { to: "/cursos", label: "Cursos" },
-    { to: "/reservas", label: "Reservas" },
     { to: "/recursos", label: "Recursos" },
+    { to: "/reservas", label: "Reservas" },
     { to: "/pagos", label: "Pagos" },
     { to: "/contacto", label: "Contacto" },
     { to: "/foro", label: "Foro" },

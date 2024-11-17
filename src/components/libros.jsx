@@ -1,36 +1,43 @@
 import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom'; // Importamos useNavigate
 
+const recursos = [
+  { "id": 1, "title": "Cálculo Diferencial y Integral", "subject": "Matemática", "file": "/pdfs/matematica1.pdf", "author": "Juan Pérez", "description": "Este libro cubre los principios básicos del cálculo diferencial e integral." },
+  { "id": 2, "title": "Álgebra Lineal", "subject": "Matemática", "file": "/pdfs/matematica2.pdf", "author": "Ana Gómez", "description": "Un enfoque completo sobre álgebra lineal con ejemplos resueltos." },
+  { "id": 3, "title": "Geometría Analítica", "subject": "Matemática", "file": "/pdfs/matematica3.pdf", "author": "Carlos López", "description": "Guía de geometría analítica, enfocada en las aplicaciones prácticas." },
+  { "id": 4, "title": "Teoría de Números", "subject": "Matemática", "file": "/pdfs/matematica4.pdf", "author": "Pedro Sánchez", "description": "Una introducción a la teoría de números con ejemplos y ejercicios." },
+  { "id": 5, "title": "Física General", "subject": "Física", "file": "/pdfs/fisica1.pdf", "author": "María Rodríguez", "description": "Fundamentos de física general, con explicaciones claras y concisas." },
+  { "id": 6, "title": "Mecánica Clásica", "subject": "Física", "file": "/pdfs/fisica2.pdf", "author": "Luis Martínez", "description": "Un enfoque profundo sobre la mecánica clásica, ideales para estudiantes avanzados." },
+  { "id": 7, "title": "Termodinámica", "subject": "Física", "file": "/pdfs/fisica3.pdf", "author": "Laura Pérez", "description": "Todo lo que necesitas saber sobre termodinámica, desde lo básico hasta lo avanzado." },
+  { "id": 8, "title": "Electromagnetismo", "subject": "Física", "file": "/pdfs/fisica4.pdf", "author": "José Ruiz", "description": "Una introducción a la teoría electromagnética y sus aplicaciones." },
+  { "id": 9, "title": "Química Orgánica", "subject": "Química", "file": "/pdfs/quimica1.pdf", "author": "Carlos García", "description": "Explora los principios fundamentales de la química orgánica con énfasis en los compuestos de carbono." },
+  { "id": 10, "title": "Química Inorgánica", "subject": "Química", "file": "/pdfs/quimica2.pdf", "author": "Sofía González", "description": "Este libro cubre los conceptos básicos de la química inorgánica y sus aplicaciones." },
+  { "id": 11, "title": "Físico-Química", "subject": "Química", "file": "/pdfs/quimica3.pdf", "author": "Ricardo Pérez", "description": "Un análisis detallado de las interacciones químicas desde el punto de vista físico." },
+  { "id": 12, "title": "Bioquímica", "subject": "Química", "file": "/pdfs/quimica4.pdf", "author": "Clara Ruiz", "description": "Una introducción a la bioquímica, ideal para estudiantes de ciencias biológicas." },
+  { "id": 13, "title": "Gramática Inglesa", "subject": "Inglés", "file": "/pdfs/ingles1.pdf", "author": "John Smith", "description": "Un repaso completo de la gramática inglesa, desde lo más básico hasta niveles avanzados." },
+  { "id": 14, "title": "Inglés para Todos", "subject": "Inglés", "file": "/pdfs/ingles2.pdf", "author": "Jane Doe", "description": "Guía práctica para aprender inglés de manera fácil y accesible." },
+  { "id": 15, "title": "Inglés Intermedio", "subject": "Inglés", "file": "/pdfs/ingles3.pdf", "author": "Chris Green", "description": "Contenido adecuado para estudiantes de nivel intermedio que desean mejorar su fluidez." },
+  { "id": 16, "title": "Inglés Avanzado", "subject": "Inglés", "file": "/pdfs/ingles4.pdf", "author": "Patricia Blue", "description": "Para estudiantes avanzados que buscan perfeccionar su inglés escrito y hablado." },
+  { "id": 17, "title": "Estadística para Todos", "subject": "Matemática", "file": "/pdfs/matematica5.pdf", "author": "María Ruiz", "description": "Una guía de estadística con ejemplos prácticos y explicaciones detalladas." },
+  { "id": 18, "title": "Física Cuántica", "subject": "Física", "file": "/pdfs/fisica5.pdf", "author": "Daniel Martínez", "description": "Introducción a los principios fundamentales de la mecánica cuántica." },
+  { "id": 19, "title": "Química Analítica", "subject": "Química", "file": "/pdfs/quimica5.pdf", "author": "Verónica Díaz", "description": "Fundamentos de la química analítica, cubriendo técnicas y métodos esenciales." },
+  { "id": 20, "title": "Química Biológica", "subject": "Química", "file": "/pdfs/quimica6.pdf", "author": "Andrés Pérez", "description": "Una exploración de la química en los procesos biológicos." }
+];
+
 const Libros = () => {
   const { id } = useParams(); // Accedemos al id del libro desde los parámetros de la URL
   const [bookDetails, setBookDetails] = useState(null);
   const navigate = useNavigate(); // hook para redirigir
 
   useEffect(() => {
-    // Cargar el libro desde biblioteca.json usando el id de la URL
-    fetch('/json/biblioteca.json')
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error(`Error al cargar el archivo JSON: ${response.statusText}`);
-        }
-        return response.text(); // Cambiar a text() para ver el contenido recibido
-      })
-      .then((data) => {
-        try {
-          const jsonData = JSON.parse(data); // Intentar parsear manualmente
-          const book = jsonData.find((book) => book.id === parseInt(id)); // Asegúrate de comparar como entero
-          if (book) {
-            setBookDetails(book);
-          } else {
-            throw new Error('No se encontró el libro con el id proporcionado');
-          }
-        } catch (e) {
-          console.error('Error al parsear el JSON o encontrar el libro:', e);
-          console.error('Contenido recibido:', data); // Mostrar el contenido que se recibió
-        }
-      })
-      .catch((error) => console.error('Error al cargar los datos del libro:', error));
-  }, [id]); // Volver a cargar los detalles cuando el id cambia
+    // Encontramos el libro con el id proporcionado desde los parámetros de la URL
+    const book = recursos.find((book) => book.id === parseInt(id)); // Comparamos el id como entero
+    if (book) {
+      setBookDetails(book);
+    } else {
+      console.error('No se encontró el libro con el id proporcionado');
+    }
+  }, [id]); // Solo recargamos cuando cambia el id
 
   if (!bookDetails) {
     return (
@@ -46,14 +53,13 @@ const Libros = () => {
     const fileContent = "Este es un archivo vacío de prueba.";
     const blob = new Blob([fileContent], { type: 'application/pdf' });
     const link = document.createElement('a');
-    link.href = URL.createObjectURL(blob); // Crear una URL para el archivo generado
-    link.download = `${bookDetails.title}.pdf`; // Nombre del archivo de la "descarga"
-    link.click(); // Simular el clic en el enlace para iniciar la descarga
+    link.href = URL.createObjectURL(blob);
+    link.download = `${bookDetails.title}.pdf`;
+    link.click();
   };
 
   return (
-    <div className="bg-gradient-to-r from-teal-100 to-teal-50 flex flex-col justify-center items-center py-10">
-      {/* Carátula del libro */}
+    <div className="flex justify-center items-center min-h-screen bg-gray-100">
       <div className="bg-white w-full max-w-4xl rounded-lg shadow-lg mb-8">
         {/* Imagen de portada */}
         <div
@@ -85,18 +91,17 @@ const Libros = () => {
           <div className="flex justify-center space-x-6">
             {/* Botón para simular la descarga del PDF */}
             <button
-              onClick={handleDownload} // Llamar a la función para simular la descarga
+              onClick={handleDownload}
               className="inline-block px-8 py-4 bg-teal-600 text-white text-xl rounded-full hover:bg-teal-700 transition duration-300 ease-in-out shadow-lg"
             >
               Descargar PDF
             </button>
-
-            {/* Botón Volver a Recursos */}
+            {/* Botón para volver atrás */}
             <button
-              onClick={() => navigate('/recursos')} // Redirigir a /recursos
-              className="px-8 py-4 bg-gray-600 text-white text-xl rounded-full hover:bg-gray-700 transition duration-300 ease-in-out shadow-lg"
+              onClick={() => navigate('/recursos')} // Redirigir al inicio
+              className="inline-block px-8 py-4 bg-gray-600 text-white text-xl rounded-full hover:bg-gray-700 transition duration-300 ease-in-out shadow-lg"
             >
-              Volver a Recursos
+              Volver al Recursos
             </button>
           </div>
         </div>

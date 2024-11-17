@@ -104,7 +104,7 @@ const Perfil = () => {
           />
           <h1 className="text-4xl font-extrabold text-teal-700 mb-8">¡Bienvenido Carlos!</h1>
         </div>
-        
+
         {/* Mensaje de bienvenida e instrucciones */}
         <div className="mb-8">
           <p className="text-xl text-gray-700 mb-4 text-center">
@@ -119,19 +119,34 @@ const Perfil = () => {
         <h2 className="text-3xl font-semibold text-teal-600 mb-6 text-center">Mi Semana Académica</h2>
 
         {/* Tabla con la agenda semanal */}
-        <div className="grid grid-cols-5 gap-4 mb-6">
-          <div className="text-center font-semibold text-lg text-teal-600">Lun</div>
-          <div className="text-center font-semibold text-lg text-teal-600">Mar</div>
-          <div className="text-center font-semibold text-lg text-teal-600">Miér</div>
-          <div className="text-center font-semibold text-lg text-teal-600">Jue</div>
-          <div className="text-center font-semibold text-lg text-teal-600">Vie</div>
-
+        <div className="hidden sm:grid grid-cols-5 gap-6 mb-6">
           {['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes'].map((dia) => (
-            <div key={dia} className="text-left p-2">
+            <div key={dia} className="border-t pt-4">
+              <h3 className="font-semibold text-teal-600 text-xl">{dia}</h3>
               {semana[dia].length > 0 ? (
                 semana[dia].map((clase, index) => (
                   <div key={index} className="bg-teal-50 p-2 mb-2 rounded-lg shadow-md">
-                    <h3 className="font-semibold text-teal-600">{clase.nombre}</h3>
+                    <h4 className="font-semibold text-teal-600">{clase.nombre}</h4>
+                    <p className="text-sm text-gray-600">Horario: {clase.horario}</p>
+                    <p className="text-xs text-gray-500">Docentes: {clase.docentes}</p>
+                  </div>
+                ))
+              ) : (
+                <p className="text-gray-500">No hay clases</p>
+              )}
+            </div>
+          ))}
+        </div>
+
+        {/* Formato para pantallas pequeñas */}
+        <div className="sm:hidden grid grid-cols-1 gap-4 mb-6">
+          {['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes'].map((dia) => (
+            <div key={dia} className="border-t pt-4">
+              <h3 className="font-semibold text-teal-600 text-xl">{dia}</h3>
+              {semana[dia].length > 0 ? (
+                semana[dia].map((clase, index) => (
+                  <div key={index} className="bg-teal-50 p-2 mb-2 rounded-lg shadow-md">
+                    <h4 className="font-semibold text-teal-600">{clase.nombre}</h4>
                     <p className="text-sm text-gray-600">Horario: {clase.horario}</p>
                     <p className="text-xs text-gray-500">Docentes: {clase.docentes}</p>
                   </div>
@@ -169,24 +184,21 @@ const Perfil = () => {
               >
                 <div className="flex flex-col">
                   <span className="font-semibold text-teal-700 text-lg">{curso.nombre}</span>
-                  <span className="text-gray-600">Fecha: {curso.fecha}</span>
-                  <span className="text-gray-600">Docente: {curso.docente || 'Por asignar'}</span>
-                  <span className="text-gray-600">Fecha de finalización: {curso.fechaFinalizacion || 'Por asignar'}</span>
+                  <span className="text-gray-500 text-sm">Horario: {curso.horario}</span>
+                  <span className="text-gray-500 text-sm">Docente: {curso.docente}</span>
                 </div>
+                <span className="text-teal-600 font-semibold text-lg">Finalizar</span>
               </li>
             ))}
           </ul>
         ) : (
           <ul className="space-y-4">
             {cursosFinalizados.map((curso, index) => (
-              <li
-                key={index}
-                className="p-5 bg-white rounded-lg shadow-md hover:shadow-xl transition duration-300"
-              >
+              <li key={index} className="p-5 bg-gray-200 rounded-lg shadow-md">
                 <div className="flex flex-col">
                   <span className="font-semibold text-teal-700 text-lg">{curso.nombre}</span>
-                  <span className="text-gray-600">Fecha de finalización: {curso.fechaFinalizacion}</span>
-                  <span className="text-gray-600">Docente: {curso.docenteFinalizacion}</span>
+                  <span className="text-gray-500 text-sm">Fecha de finalización: {curso.fechaFinalizacion}</span>
+                  <span className="text-gray-500 text-sm">Docente: {curso.docenteFinalizacion}</span>
                 </div>
               </li>
             ))}
@@ -194,15 +206,25 @@ const Perfil = () => {
         )}
       </div>
 
-      {/* Modal de confirmación de curso completado */}
+      {/* Modal de confirmación */}
       {modalVisible && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
+        <div className="fixed inset-0 flex justify-center items-center bg-gray-700 bg-opacity-50 z-50">
           <div className="bg-white p-6 rounded-lg shadow-lg w-96">
-            <h2 className="text-xl font-semibold text-teal-600 mb-4">¿Confirmas que has completado este curso?</h2>
-            <p className="mb-4">{cursoSeleccionado?.nombre}</p>
-            <div className="flex justify-end">
-              <button onClick={cerrarModal} className="text-gray-500 mr-4">Cancelar</button>
-              <button onClick={confirmarCompletado} className="bg-teal-600 text-white px-4 py-2 rounded-md hover:bg-teal-700">Confirmar</button>
+            <h3 className="text-xl font-semibold text-teal-600 mb-4">Confirmación de Curso Completado</h3>
+            <p>¿Estás seguro de que deseas marcar el curso "{cursoSeleccionado.nombre}" como completado?</p>
+            <div className="mt-6 flex justify-end space-x-4">
+              <button
+                className="px-6 py-2 bg-gray-300 text-black rounded-lg hover:bg-gray-400 transition-colors"
+                onClick={cerrarModal}
+              >
+                Cancelar
+              </button>
+              <button
+                className="px-6 py-2 bg-teal-600 text-white rounded-lg hover:bg-teal-700 transition-colors"
+                onClick={confirmarCompletado}
+              >
+                Confirmar
+              </button>
             </div>
           </div>
         </div>

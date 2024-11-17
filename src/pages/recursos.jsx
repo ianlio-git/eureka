@@ -7,7 +7,7 @@ const Recursos = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedSubject, setSelectedSubject] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
-  const resultsPerPage = 10;
+  const resultsPerPage = 8;
 
   useEffect(() => {
     fetch('/public/json/biblioteca.json')

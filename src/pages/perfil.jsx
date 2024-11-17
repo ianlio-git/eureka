@@ -120,11 +120,11 @@ const Perfil = () => {
 
         {/* Tabla con la agenda semanal */}
         <div className="grid grid-cols-5 gap-4 mb-6">
-          <div className="text-center font-semibold text-lg text-teal-600">Lunes</div>
-          <div className="text-center font-semibold text-lg text-teal-600">Martes</div>
-          <div className="text-center font-semibold text-lg text-teal-600">Miércoles</div>
-          <div className="text-center font-semibold text-lg text-teal-600">Jueves</div>
-          <div className="text-center font-semibold text-lg text-teal-600">Viernes</div>
+          <div className="text-center font-semibold text-lg text-teal-600">Lun</div>
+          <div className="text-center font-semibold text-lg text-teal-600">Mar</div>
+          <div className="text-center font-semibold text-lg text-teal-600">Miér</div>
+          <div className="text-center font-semibold text-lg text-teal-600">Jue</div>
+          <div className="text-center font-semibold text-lg text-teal-600">Vie</div>
 
           {['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes'].map((dia) => (
             <div key={dia} className="text-left p-2">

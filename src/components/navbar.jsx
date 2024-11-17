@@ -111,6 +111,8 @@ function Navbar({ isLoggedIn, setIsLoggedIn }) {
             <div className="flex space-x-4 w-full justify-center items-center">
               {!isLoggedIn ? (
                 <>
+                <Link className="text-white text-base md:text-lg hover:text-green-300 transition-colors duration-300 nav-link" to="/cursos">Cursos</Link>
+                  <div className="border-r border-white h-6 mx-2"></div>
                   <Link className="text-white text-base md:text-lg hover:text-green-300 transition-colors duration-300 nav-link" to="/login">Login</Link>
                   <div className="border-r border-white h-6 mx-2"></div>
                   <Link className="text-white text-base md:text-lg hover:text-green-300 transition-colors duration-300 nav-link" to="/register">Register</Link>
@@ -139,6 +141,7 @@ function Navbar({ isLoggedIn, setIsLoggedIn }) {
       >
         {!isLoggedIn ? (
           <>
+            <Link className="block text-white text-base px-3 py-2 nav-link hover:text-green-300 transition-colors duration-300" to="/cursos">Cursos</Link>
             <Link className="block text-white text-base px-3 py-2 nav-link hover:text-green-300 transition-colors duration-300" to="/login">Login</Link>
             <Link className="block text-white text-base px-3 py-2 nav-link hover:text-green-300 transition-colors duration-300" to="/register">Register</Link>
           </>

@@ -13,11 +13,19 @@ const Recursos = () => {
     fetch('/json/biblioteca.json') // Ruta correcta para acceder al archivo JSON
       .then((response) => {
         if (!response.ok) {
-          throw new Error('Error al cargar el archivo JSON');
+          throw new Error(`Error al cargar el archivo JSON: ${response.statusText}`);
         }
-        return response.json();
+        return response.text(); // Cambiar a text() para ver el contenido recibido
       })
-      .then((data) => setRecursosData(data))
+      .then((data) => {
+        try {
+          const jsonData = JSON.parse(data); // Intentar parsear manualmente
+          setRecursosData(jsonData);
+        } catch (e) {
+          console.error('Error al parsear el JSON:', e);
+          console.error('Contenido recibido:', data); // Mostrar el contenido que se recibió
+        }
+      })
       .catch((error) => console.error('Error al cargar los datos de los libros:', error));
   }, []);
 

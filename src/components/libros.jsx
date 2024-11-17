@@ -9,13 +9,27 @@ const Libros = () => {
   useEffect(() => {
     // Cargar el libro desde biblioteca.json usando el id de la URL
     fetch('/json/biblioteca.json')
-      .then((response) => response.json())
-      .then((data) => {
-        // Buscar el libro con el id que se pasa en la URL
-        const book = data.find((book) => book.id === parseInt(id)); // Asegúrate de comparar como entero
-        setBookDetails(book);
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(`Error al cargar el archivo JSON: ${response.statusText}`);
+        }
+        return response.text(); // Cambiar a text() para ver el contenido recibido
       })
-      .catch((error) => console.error('Error al cargar el libro:', error));
+      .then((data) => {
+        try {
+          const jsonData = JSON.parse(data); // Intentar parsear manualmente
+          const book = jsonData.find((book) => book.id === parseInt(id)); // Asegúrate de comparar como entero
+          if (book) {
+            setBookDetails(book);
+          } else {
+            throw new Error('No se encontró el libro con el id proporcionado');
+          }
+        } catch (e) {
+          console.error('Error al parsear el JSON o encontrar el libro:', e);
+          console.error('Contenido recibido:', data); // Mostrar el contenido que se recibió
+        }
+      })
+      .catch((error) => console.error('Error al cargar los datos del libro:', error));
   }, [id]); // Volver a cargar los detalles cuando el id cambia
 
   if (!bookDetails) {

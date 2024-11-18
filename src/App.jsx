@@ -13,7 +13,6 @@ import Foro from './pages/foro';
 import Recursos from './pages/recursos';
 import Pagos from './pages/pagos';
 import Perfil from './pages/perfil';
-import Libros from './components/libros'; // Asegúrate de importar el componente Libros
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -34,7 +33,6 @@ function App() {
           <Route path="/foro" element={<Foro />} />
           <Route path="/recursos" element={<Recursos />} />
           <Route path="/pagos" element={<Pagos />} />
-          <Route path="/libros/:id" element={<Libros />} /> {/* Aquí pasamos el parámetro id */}
           
           <Route
             path="/perfil"

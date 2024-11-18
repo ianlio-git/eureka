@@ -1,23 +1,39 @@
-// eslint-disable-next-line no-unused-vars
 import React from 'react';
 import { Link } from 'react-router-dom';
+import logo from '../img/LogoUADE.png'; // Asegúrate de que la ruta al logo sea correcta
 
-function footer() {
+function Footer() {
   return (
-    <footer className="bg-verde-agua rounded-t-2xl text-white py-6">
+    <footer className="bg-verde-agua rounded-t-2xl text-white py-6 mt-auto">
       <div className="container mx-auto px-4">
         <div className="flex flex-col md:flex-row justify-between items-center">
-          <p className="mb-2 md:mb-0 text-center md:text-left">&copy; 2024 Instituto Eureka. Todos los derechos reservados.</p>
-          <div className="flex space-x-6 mt-2 md:mt-0">
-            <Link to="#" title="Facebook" className="hover:text-green-300 transition-colors duration-300">
-              <i className="bi bi-facebook text-2xl"></i>
-            </Link>
-            <Link to="#" title="Twitter" className="hover:text-green-300 transition-colors duration-300">
-              <i className="bi bi-twitter text-2xl"></i>
-            </Link>
-            <Link to="#" title="Instagram" className="hover:text-green-300 transition-colors duration-300">
-              <i className="bi bi-instagram text-2xl"></i>
-            </Link>
+          {/* Información del footer */}
+          <div className="flex-grow-1 text-center md:text-left">
+            <div className="flex flex-col md:flex-row justify-center md:justify-start space-y-3 md:space-y-0">
+              <div className="md:px-4">
+                <p className="mb-1">
+                  <strong>Materia:</strong> Diseño y Desarrollo Web
+                </p>
+              </div>
+              <div className="md:px-4">
+                <p className="mb-1">
+                  <strong>Curso:</strong> Virtual
+                </p>
+              </div>
+              <div className="md:px-4">
+                <p className="mb-1">
+                  <strong>Grupo:</strong> 07
+                </p>
+              </div>
+            </div>
+            <div className="mt-3">
+              <p>&copy; 2024 Todos los Derechos Reservados - Sitio desarrollado para uso educativo.</p>
+            </div>
+          </div>
+
+          {/* Logo */}
+          <div className="flex justify-center items-center mt-4 md:mt-0">
+            <img src={logo} alt="Logo UADE" style={{ maxWidth: '100px' }} />
           </div>
         </div>
       </div>
@@ -25,4 +41,4 @@ function footer() {
   );
 }
 
-export default footer;
+export default Footer;

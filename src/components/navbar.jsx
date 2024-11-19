@@ -113,9 +113,9 @@ function Navbar({ isLoggedIn, setIsLoggedIn }) {
                 <>
                 <Link className="text-white text-base md:text-lg hover:text-green-300 transition-colors duration-300 nav-link" to="/cursos">Cursos</Link>
                   <div className="border-r border-white h-6 mx-2"></div>
-                  <Link className="text-white text-base md:text-lg hover:text-green-300 transition-colors duration-300 nav-link" to="/login">Login</Link>
+                  <Link className="text-white text-base md:text-lg hover:text-green-300 transition-colors duration-300 nav-link" to="/login">Iniciar sesión</Link>
                   <div className="border-r border-white h-6 mx-2"></div>
-                  <Link className="text-white text-base md:text-lg hover:text-green-300 transition-colors duration-300 nav-link" to="/register">Register</Link>
+                  <Link className="text-white text-base md:text-lg hover:text-green-300 transition-colors duration-300 nav-link" to="/register">Registrarse</Link>
                 </>
               ) : (
                 <>
@@ -124,7 +124,7 @@ function Navbar({ isLoggedIn, setIsLoggedIn }) {
                   <button 
                     onClick={handleLogout} 
                     className="text-red-400 text-base md:text-lg hover:text-green-300 transition-colors duration-300 nav-link">
-                    Logout
+                    Salir
                   </button>
                 </>
               )}

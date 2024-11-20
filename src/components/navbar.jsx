@@ -18,6 +18,7 @@ function Navbar({ isLoggedIn, setIsLoggedIn }) {
     localStorage.removeItem('authToken'); // Eliminar el token de localStorage
     setIsLoggedIn(false); // Cambiar el estado de login
     alert('Has cerrado sesión exitosamente.');  // Mostrar alerta al cerrar sesión
+    navigate('/'); // Redirigir a la página de inicio
   };
 
   // Función para redirigir a la página de perfil si está logeado

@@ -123,7 +123,7 @@ function Navbar({ isLoggedIn, setIsLoggedIn }) {
                   <div className="border-r border-white h-6 mx-2"></div>
                   <button 
                     onClick={handleLogout} 
-                    className="text-red-400 text-base md:text-lg hover:text-green-300 transition-colors duration-300 nav-link">
+                    className="text-green-200 text-base md:text-lg hover:text-green-300 transition-colors duration-300 nav-link">
                     Salir
                   </button>
                 </>
@@ -148,7 +148,7 @@ function Navbar({ isLoggedIn, setIsLoggedIn }) {
         ) : (
           <>
             {renderLinks(menuLinks, true)} {/* Pasamos "true" para indicar que es el menú móvil */}
-            <button onClick={handleLogout} className="block text-green-200 text-base px-3 py-2 nav-link hover:text-green-300 transition-colors duration-300">Salir</button>
+            <button onClick={handleLogout} className="block  text-green-200 text-base px-3 py-2 nav-link hover:text-green-300 transition-colors duration-300">Salir</button>
           </>
         )}
       </div>

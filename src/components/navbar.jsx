@@ -142,13 +142,13 @@ function Navbar({ isLoggedIn, setIsLoggedIn }) {
         {!isLoggedIn ? (
           <>
             <Link className="block text-white text-base px-3 py-2 nav-link hover:text-green-300 transition-colors duration-300" to="/cursos">Cursos</Link>
-            <Link className="block text-white text-base px-3 py-2 nav-link hover:text-green-300 transition-colors duration-300" to="/login">Login</Link>
-            <Link className="block text-white text-base px-3 py-2 nav-link hover:text-green-300 transition-colors duration-300" to="/register">Register</Link>
+            <Link className="block text-white text-base px-3 py-2 nav-link hover:text-green-300 transition-colors duration-300" to="/login">Iniciar sesión</Link>
+            <Link className="block text-white text-base px-3 py-2 nav-link hover:text-green-300 transition-colors duration-300" to="/register">Registrarse</Link>
           </>
         ) : (
           <>
             {renderLinks(menuLinks, true)} {/* Pasamos "true" para indicar que es el menú móvil */}
-            <button onClick={handleLogout} className="block text-red-400 text-base px-3 py-2 nav-link hover:text-green-300 transition-colors duration-300">Logout</button>
+            <button onClick={handleLogout} className="block text-green-200 text-base px-3 py-2 nav-link hover:text-green-300 transition-colors duration-300">Salir</button>
           </>
         )}
       </div>
